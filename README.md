@@ -4,6 +4,19 @@ A natural-language chat agent that answers questions about your Windows laptop �
 disk space, CPU/GPU, RAM, when it was last updated, battery, startup programs, and
 how to clean it up — by actually querying your system, not guessing.
 
+## use cases 
+Scaling to Remote Servers
+Laptop Agent is built around a simple pattern: the user asks a question in plain English, the model picks the right diagnostic tool, and real data comes back. The same pattern can be applied to remote servers in live projects.
+Instead of logging into each server and manually checking disk space, CPU load, memory, pending updates, or startup services, an engineer could simply type a server name (for example, "Show me the status of web-server-02") and get a complete health summary in seconds.
+Benefits
+Saves time: no repeated logins and manual checks on every server.
+One place for everything: disk, CPU, RAM, updates, and services in a single answer.
+Faster troubleshooting: ask follow-ups like "Why is this server slow?" or "What changed since last update?"
+Easier for non-experts: support staff don't need to remember commands.
+Scales with the fleet: adding a server means adding its name to a list, not rewriting the tool.
+
+How it would work: the existing tools would run over a remote connection (SSH for Linux, WinRM/PowerShell Remoting for Windows) against a named list of servers, using the same tool-calling flow.
+
 ## How it works
 
 - `system_tools.py` — the "hands": real functions that call PowerShell/psutil to
